@@ -19,13 +19,15 @@ describe('AppController', async () => {
 
   const appController = app.get<AppController>(AppController);
 
-  beforeEach(async () => {
-    await app.init();
-  });
+  // beforeEach(async () => {
+  //   // Not Needed Since Unit Testing
+  //   // await app.init();
+  // });
 
-  afterEach(async () => {
-    await app.close();
-  });
+  // afterEach(async () => {
+  //   // Not Needed Since Unit Testing
+  //   // await app.close();
+  // });
 
   it('should be defined', () => {
     expect(app).toBeDefined();
