@@ -17,7 +17,6 @@ describe('AppController', async () => {
     .useValue(mockAppService)
     .compile();
 
-  const appService = app.get<AppService>(AppService);
   const appController = app.get<AppController>(AppController);
 
   beforeEach(async () => {
@@ -34,16 +33,17 @@ describe('AppController', async () => {
 
   it('should return Hello World', () => {
     vi.spyOn(appController, 'getHello').mockImplementationOnce(() =>
-      appService.getHello(),
+      mockAppService.getHello(),
     );
 
-    expect(appController.getHello()).toBe('Hello World!');
+    expect(appController.getHello()).toBe('Hello Todd!');
   });
 
   it('should return Goodbye World', () => {
     vi.spyOn(appController, 'getGoodbye').mockImplementation(() =>
-      appService.goodbye(),
+      mockAppService.goodbye(),
     );
-    expect(appController.getGoodbye()).toBe('Goodbye World!');
+
+    expect(appController.getGoodbye()).toBe('Goodbye Test Master!');
   });
 });
