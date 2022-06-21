@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 
 const mockAppService = {
   getHello: vi.fn().mockImplementation(() => 'Hello Todd!'),
-  getGoodbye: vi.fn().mockImplementation(() => 'Goodbye Test Master!'),
+  getGoodbye: vi.fn(() => 'Goodbye Test Master!'),
 };
 
 describe('AppController', async () => {
@@ -26,18 +26,10 @@ describe('AppController', async () => {
   });
 
   it('should return Hello World', () => {
-    vi.spyOn(controller, 'getHello').mockImplementation(() =>
-      mockAppService.getHello(),
-    );
-
     expect(controller.getHello()).toBe('Hello Todd!');
   });
 
   it('should return Goodbye World', () => {
-    vi.spyOn(controller, 'getGoodbye').mockImplementation(() =>
-      mockAppService.getGoodbye(),
-    );
-
     expect(controller.getGoodbye()).toBe('Goodbye Test Master!');
   });
 });

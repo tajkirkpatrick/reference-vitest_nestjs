@@ -6,7 +6,7 @@ describe('AppService', async () => {
     providers: [AppService],
   }).compile();
 
-  const service = app.get(AppService);
+  const service = app.get<AppService>(AppService);
 
   it('should be defined', () => {
     expect(service).toBeDefined();
