@@ -12,6 +12,6 @@ export class AppController {
 
   @Get()
   getGoodbye(): string {
-    return this.appService.goodbye();
+    return this.appService.getGoodbye();
   }
 }

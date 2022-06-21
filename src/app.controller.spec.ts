@@ -4,48 +4,40 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 const mockAppService = {
-  getHello: vi.fn(() => 'Hello Todd!'),
-  goodbye: vi.fn(() => 'Goodbye Test Master!'),
+  getHello: vi.fn().mockImplementation(() => 'Hello Todd!'),
+  getGoodbye: vi.fn().mockImplementation(() => 'Goodbye Test Master!'),
 };
 
 describe('AppController', async () => {
   const app: TestingModule = await Test.createTestingModule({
     controllers: [AppController],
-    providers: [AppService],
-  })
-    .overrideProvider(AppService)
-    .useValue(mockAppService)
-    .compile();
+    providers: [
+      {
+        provide: AppService,
+        useValue: mockAppService,
+      },
+    ],
+  }).compile();
 
-  const appController = app.get<AppController>(AppController);
-
-  // beforeEach(async () => {
-  //   // Not Needed Since Unit Testing
-  //   // await app.init();
-  // });
-
-  // afterEach(async () => {
-  //   // Not Needed Since Unit Testing
-  //   // await app.close();
-  // });
+  const controller = app.get<AppController>(AppController);
 
   it('should be defined', () => {
-    expect(app).toBeDefined();
+    expect(controller).toBeDefined();
   });
 
   it('should return Hello World', () => {
-    vi.spyOn(appController, 'getHello').mockImplementationOnce(() =>
+    vi.spyOn(controller, 'getHello').mockImplementation(() =>
       mockAppService.getHello(),
     );
 
-    expect(appController.getHello()).toBe('Hello Todd!');
+    expect(controller.getHello()).toBe('Hello Todd!');
   });
 
   it('should return Goodbye World', () => {
-    vi.spyOn(appController, 'getGoodbye').mockImplementation(() =>
-      mockAppService.goodbye(),
+    vi.spyOn(controller, 'getGoodbye').mockImplementation(() =>
+      mockAppService.getGoodbye(),
     );
 
-    expect(appController.getGoodbye()).toBe('Goodbye Test Master!');
+    expect(controller.getGoodbye()).toBe('Goodbye Test Master!');
   });
 });
