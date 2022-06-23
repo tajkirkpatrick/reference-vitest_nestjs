@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
+import request = require('supertest');
 
 describe('App-e2e-test', async () => {
   let app: INestApplication;
@@ -23,7 +23,16 @@ describe('App-e2e-test', async () => {
     expect(app).toBeDefined();
   });
 
-  it(`/GET root`, async () => {
-    return request(app.getHttpServer()).get('/todo').expect(200);
+  it(`GET /`, async () => {
+    return await request(app.getHttpServer()).get('/todo').expect(200);
+  });
+
+  it(`GET /goodbye`, async () => {
+    const response: request.Response = await request(app.getHttpServer()).get(
+      '/goodbye',
+    );
+
+    expect(response.statusCode).toBe(200);
+    expect(response.text).toBe('Goodbye World!');
   });
 });
