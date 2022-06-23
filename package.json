@@ -14,7 +14,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "vitest --dom"
+    "test": "vitest --ui"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -41,6 +41,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "happy-dom": "^5.3.1",
     "jest": "28.0.3",
+    "msw": "^0.42.1",
     "prettier": "^2.3.2",
     "source-map-support": "^0.5.20",
     "supertest": "^6.1.3",
