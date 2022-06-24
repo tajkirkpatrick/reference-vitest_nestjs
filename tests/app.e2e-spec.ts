@@ -25,6 +25,8 @@ describe('App (e2e)', () => {
   it('msw - fetch check endpoint', async () => {
     const response: Response = await fetch('https://example.com/check');
 
+    console.log(response);
+
     expect(response.status).toBe(200);
   });
 });

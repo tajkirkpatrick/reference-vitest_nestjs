@@ -3,7 +3,9 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 
 export const restHandlers = [
-  rest.get('https://example.com/check', (req, res, ctx) => {
+  rest.get('https://example.com/check', (request, res, ctx) => {
+    console.log('Request' + JSON.stringify(request, null, 2));
+
     return res(ctx.status(200), ctx.json({ status: 'ok' }));
   }),
 
