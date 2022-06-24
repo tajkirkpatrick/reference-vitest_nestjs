@@ -23,16 +23,21 @@ describe('Todo (e2e)', async () => {
     expect(app).toBeDefined();
   });
 
-  it(`GET /`, async () => {
-    return await request(app.getHttpServer()).get('/todo').expect(200);
+  it(`msw - GET /todo`, async () => {
+    return await request(app.getHttpServer())
+      .get('/todo')
+      .expect(200)
+      .expect({ status: 'ok' });
   });
 
-  it(`GET /goodbye`, async () => {
+  it(`msw - GET /goodbye`, async () => {
     const response: request.Response = await request(app.getHttpServer()).get(
       '/goodbye',
     );
 
+    const responseText = JSON.parse(response.text);
+
     expect(response.statusCode).toBe(200);
-    expect(response.text).toBe('Goodbye World!');
+    expect(responseText).toStrictEqual({ status: 'ok' });
   });
 });

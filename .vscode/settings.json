@@ -1,4 +1,3 @@
 {
-  "prettier.enable": true,
-  "prettier.singleQuote": true
+  "prettier.enable": true
 }

@@ -14,7 +14,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "vitest --ui"
+    "test": "vitest --ui --dom"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
