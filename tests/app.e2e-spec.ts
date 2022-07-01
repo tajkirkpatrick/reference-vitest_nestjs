@@ -18,7 +18,7 @@ describe('App (e2e)', () => {
     await app.close();
   });
 
-  it('nestjs - app is initialized', () => {
+  it('nestjs app is initialized', () => {
     expect(app).toBeDefined();
   });
 
